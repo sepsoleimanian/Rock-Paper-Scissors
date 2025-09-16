@@ -1,12 +1,15 @@
 import random
+from typing import List, Tuple
 
 class RockPaperScissors:
-  def __init__(self, name):
-    self.choices = ['rock', 'paper', 'scissors']
-    self.player_name = name 
+  """Main class for Rock Paper Scissors game.
+  """
+  def __init__(self, name: str):
+    self.choices: List[str] = ['rock', 'paper', 'scissors']
+    self.player_name: str = name 
     
   def get_player_choice(self):
-    user_choice = input(f'Enter your choice {[self.choices]}')
+    user_choice: str = input(f'Enter your choice {[self.choices]}')
     if user_choice.lower() in self.choices:
       return user_choice.lower()
     else:
@@ -14,12 +17,17 @@ class RockPaperScissors:
       return self.get_player_choice()
     
   def get_computer_choice(self):
+    """Method to get computer choice randomly from choices.
+    """
     return random.choice(self.choices)
     
-  def decide_winner(self, user_choice, computer_choice):
+  def decide_winner(self, user_choice: str, computer_choice: str) -> str:
+    """Decide winner of the game based on user and computer choices.
+    
+    """
     if user_choice == computer_choice:
       return "it's a tie!"
-    win_combinations = [('rock, paper'), ('paper', 'scissors'), ('scissors', 'paper')]
+    win_combinations: List[Tuple[str, str]] = [('rock, paper'), ('paper', 'scissors'), ('scissors', 'paper')]
     for win_comb in win_combinations:
       if (user_choice == win_comb[0]) & (computer_choice == win_comb[1]):
         return "Congrats! You won."
